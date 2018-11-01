@@ -235,6 +235,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="GRAVAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGravarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="tpCalculo">
       <Properties>

@@ -138,6 +138,11 @@ public class TelaCalculo extends javax.swing.JFrame {
 
         btGravar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btGravar.setText("GRAVAR");
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGravarActionPerformed(evt);
+            }
+        });
 
         tpCalculo.setBackground(new java.awt.Color(204, 204, 204));
         tpCalculo.setToolTipText("");
@@ -250,6 +255,14 @@ public class TelaCalculo extends javax.swing.JFrame {
     private void tfVlInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfVlInicialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfVlInicialActionPerformed
+
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        if (tpCalculo.getSelectedComponent() == pnDicotomia) {
+            Dicotomia dt = new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Double.parseDouble(tfPrecisao.getText()));
+        } else if (tpCalculo.getSelectedComponent() == pnDicotomia) {
+            NewtonRaphson nr = new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Double.parseDouble(tfPrecisao.getText()));
+        }
+    }//GEN-LAST:event_btGravarActionPerformed
 
     /**
      * @param args the command line arguments
