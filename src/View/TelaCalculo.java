@@ -21,12 +21,10 @@ public class TelaCalculo extends javax.swing.JFrame {
      */
     public TelaCalculo() {
         initComponents();
-        if (tpCalculo.getSelectedComponent() == pnDicotomia) {
-            montaTabelaDicotomia();
-        }
-        else if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
-            montaTabelaNewtonRaphson();
-        } 
+        
+        montaTabelaDicotomia();
+        montaTabelaNewtonRaphson();
+
     }
 
     /**
@@ -260,12 +258,12 @@ public class TelaCalculo extends javax.swing.JFrame {
     
     private void montaTabelaDicotomia() {
        tbDicotomia.setModel(Dicotomia.getTableModel());
-       tbDicotomia.enable(false);
+       tbDicotomia.enable(true);
     } 
     
     private void montaTabelaNewtonRaphson() {
        tbNewtonRaphson.setModel(NewtonRaphson.getTableModel());
-       tbNewtonRaphson.enable(false);
+       tbNewtonRaphson.enable(true);
     } 
     
     

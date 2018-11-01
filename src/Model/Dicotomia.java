@@ -57,7 +57,7 @@ public class Dicotomia {
     }
     
     public void setX2(double x2) {
-        this.x2 = x2;
+        this.x2 = 0;
     }
     
     public void setFx1(double x1) {
