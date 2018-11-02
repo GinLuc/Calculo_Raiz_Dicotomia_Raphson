@@ -29,6 +29,7 @@ public class NewtonRaphson {
         setFxi(xi);
         setFdxi(xi);
         setXf(xi, getFxi(), getFdxi());
+        setPrecisao(precisao);
         setModulo(xi, getXf());
     }
     
@@ -54,6 +55,9 @@ public class NewtonRaphson {
         return modulo;
     }
     
+    public static double getPrecisao() {
+        return precisao;
+    }
     
 //Setters
     public static void setXi(double xi) {
@@ -76,10 +80,13 @@ public class NewtonRaphson {
         NewtonRaphson.modulo = abs(xf - xi);
     }
     
-    
+    public static void setPrecisao(double precisao) {
+        NewtonRaphson.precisao = precisao;
+    }
     public static void passaValor(double xf) {
         setXi(xf);
     }
+    
     
     
 
@@ -93,13 +100,13 @@ public class NewtonRaphson {
         modelo.addColumn("|Xf - Xi|");
         
         
-        while (modulo >= precisao) {
+        /* while (modulo >= precisao) {
             String[] s = {Double.toString(getXi()), Double.toString(getFxi()), Double.toString(getFdxi()), 
                 Double.toString(getXf()), Double.toString(getModulo())};
             
             passaValor(getXf());
             modelo.addRow(s);
-        }
+        }  */
         return modelo;
     }
     

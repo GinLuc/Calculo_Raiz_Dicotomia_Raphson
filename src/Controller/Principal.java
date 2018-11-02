@@ -9,8 +9,10 @@ import View.TelaCalculo;
 
 /**
  *
- * @author GianL
+ * @author GianL e FelipeSdS
  */
+
+//Classe Principal, aonde será iniciado o programa
 public class Principal {
     
     

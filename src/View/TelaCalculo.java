@@ -22,8 +22,8 @@ public class TelaCalculo extends javax.swing.JFrame {
     public TelaCalculo() {
         initComponents();
         
-        montaTabelaDicotomia();
-        montaTabelaNewtonRaphson();
+        
+        
 
     }
 
@@ -258,10 +258,12 @@ public class TelaCalculo extends javax.swing.JFrame {
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         if (tpCalculo.getSelectedComponent() == pnDicotomia) {
-            Dicotomia dt = new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Double.parseDouble(tfPrecisao.getText()));
+            Dicotomia dt = new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
+            montaTabelaDicotomia();
         } else if (tpCalculo.getSelectedComponent() == pnDicotomia) {
             NewtonRaphson nr = new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Double.parseDouble(tfPrecisao.getText()));
-        }
+            montaTabelaNewtonRaphson();
+        } 
     }//GEN-LAST:event_btGravarActionPerformed
 
     /**
