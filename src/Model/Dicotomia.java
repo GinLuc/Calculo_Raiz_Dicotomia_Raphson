@@ -30,7 +30,7 @@ public class Dicotomia {
 //Construtor
     public Dicotomia (double x1, double precisao) {
         setX1(x1);
-        setX2();
+        setX2(0);
         setFx1(x1);
         setFx2(getX2());
         setPm(getX1(), getX2());
@@ -74,40 +74,51 @@ public class Dicotomia {
     }
     
  //Setters
-    public void setX1(double x1) {
-        this.x1 = x1;
+    public static void setX1(double x1) {
+        Dicotomia.x1 = x1;
     }
     
-    public void setX2() {
-        this.x2 = 0;
+    public static void setX2(double x2) {
+        Dicotomia.x2 = x2;
     }
     
-    public void setFx1(double x1) {
-        this.fx1 = sqrt(x1);
+    public static void setFx1(double x1) {
+        Dicotomia.fx1 = sqrt(x1);
     }
     
-    public void setFx2(double x2) {
-        this.fx2 = sqrt(x2);
+    public static void setFx2(double x2) {
+        Dicotomia.fx2 = sqrt(x2);
     }
     
-    public void setPm(double x1, double x2) {
-        this.pm = (x1 + x2) / 2;
+    public static void setPm(double x1, double x2) {
+        Dicotomia.pm = (x1 + x2) / 2;
     }
     
-    public void setFpm(double pm) {
-        this.fpm = sqrt(pm);
+    public static void setFpm(double pm) {
+        Dicotomia.fpm = sqrt(pm);
     }
     
-    public void setModulo (double x1, double x2) {
-        this.modulo = abs(x1 - x2);
+    public static void setModulo (double x1, double x2) {
+        Dicotomia.modulo = abs(x1 - x2);
     }
     
-    public void setPrecisao(double precisao) {
-        this.precisao = precisao;
+    public static void setPrecisao(double precisao) {
+        Dicotomia.precisao = precisao;
     }
     
     
-    
+    public static void passaValor(double fx1,double fx2, double fpm) {
+        if(fpm <= 0) {
+            if (fx1 <= 0)
+                setX1(Dicotomia.getPm());
+            else if (fx2 <= 0)
+                setX2(Dicotomia.getPm());
+        }
+        else if (fx1 >= 0)
+            setX1(Dicotomia.getPm());
+        else if (fx2 >= 0)
+            setX2(Dicotomia.getPm());
+    }
     
     
     
@@ -122,14 +133,18 @@ public class Dicotomia {
         modelo.addColumn("f(P.M.)");       
         modelo.addColumn("|X1 - X2|");       
 
-        
         while (modulo >= precisao) {
-            String[] s = {Double.toString(getX1()), Double.toString(getX2()), Double.toString(getFx1()), 
-                Double.toString(getFx2()), Double.toString(getPm()), Double.toString(getFpm()), Double.toString(getModulo())};
-            modelo.addRow(s);
+            
+            String[] s = {
+                Double.toString(getX1()), Double.toString(getX2()), Double.toString(getFx1()), 
+                Double.toString(getFx2()), Double.toString(getPm()), Double.toString(getFpm()), 
+                Double.toString(getModulo())
+            };
+            modelo.addRow(s);    
+            passaValor(getFx1(), getFx2(), getFpm());
+            
         }
-        
-        
+
         return modelo;
     }
     

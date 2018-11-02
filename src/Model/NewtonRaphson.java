@@ -56,26 +56,30 @@ public class NewtonRaphson {
     
     
 //Setters
-    public void setXi(double xi) {
-        this.xi = xi;
+    public static void setXi(double xi) {
+        NewtonRaphson.xi = xi;
     }
     
-    public void setFxi(double xi) {
-        this.fxi = sqrt(xi);
+    public static void setFxi(double xi) {
+        NewtonRaphson.fxi = sqrt(xi);
     }
     
-    public void setFdxi(double xi) {
-        this.fdxi = (sqrt(1 / xi)) / 2; // Derivada de Raíz Quadrada é: 1/2 * RAIZ(1/xi)
+    public static void setFdxi(double xi) {
+        NewtonRaphson.fdxi = (sqrt(1 / xi)) / 2; // Derivada de Raíz Quadrada é: 1/2 * RAIZ(1/xi)
     }
     
-    public void setXf(double xi, double fxi, double fdxi) {
-        this.xf = xi - (fxi/fdxi); //Retorno do próximo valor a ser utilizado, aonde: Xf = Xi - (F(xi) / F'(Xi))
+    public static void setXf(double xi, double fxi, double fdxi) {
+        NewtonRaphson.xf = xi - (fxi/fdxi); //Retorno do próximo valor a ser utilizado, aonde: Xf = Xi - (F(xi) / F'(Xi))
     }
     
-    public void setModulo(double xi, double xf) {
-        this.modulo = abs(xf - xi);
+    public static void setModulo(double xi, double xf) {
+        NewtonRaphson.modulo = abs(xf - xi);
     }
     
+    
+    public static void passaValor(double xf) {
+        setXi(xf);
+    }
     
     
 
@@ -92,6 +96,8 @@ public class NewtonRaphson {
         while (modulo >= precisao) {
             String[] s = {Double.toString(getXi()), Double.toString(getFxi()), Double.toString(getFdxi()), 
                 Double.toString(getXf()), Double.toString(getModulo())};
+            
+            passaValor(getXf());
             modelo.addRow(s);
         }
         return modelo;
