@@ -41,6 +41,16 @@ public class Dicotomia {
     }
     
     
+    public Dicotomia(double x1, double x2) {
+        setX1(x1);
+        setX2(x2);
+        setFx1(x1);
+        setFx2(getX2());
+        setPm(getX1(), getX2());
+        setFpm(getPm());
+        setModulo(getX1(), getX2());
+    }
+    
 //Getters: Ocorrem o retorno dos valores inseridos nos Setters   
     public static double getX1() {
         return x1;
@@ -108,18 +118,18 @@ public class Dicotomia {
     }
     
     
-    public static void passaValor(double fx1,double fx2, double fpm, double pm) {
- if(fpm < 0.0) {
+    public static void passaValor(double x1, double x2, double fx1,double fx2, double fpm, double pm) {
+        if(fpm < 0.0) {
             if (fx1 < 0)
-                setX1(pm);
+                new Dicotomia(pm, x2);
             else if (fx2 < 0)
-                setX2(pm);  
+                new Dicotomia(x1, pm); 
         }
         else {
             if (fx1 >= 0)
-                setX1(pm);
+                new Dicotomia(pm, x2);
             else if (fx2 >= 0)
-                setX2(pm);
+                new Dicotomia(x1, pm);
         }
             
        
@@ -150,7 +160,7 @@ public class Dicotomia {
 
             String[] s = {vlx1, vlfx1, vlx2, vlfx2, vlpm, vlfpm, vlmodulo};
             modelo.addRow(s);  
-            passaValor(getFx1(), getFx2(), getFpm(), getPm());
+            passaValor(getX1(), getX2(), getFx1(), getFx2(), getFpm(), getPm());
             i++;
         }
 
