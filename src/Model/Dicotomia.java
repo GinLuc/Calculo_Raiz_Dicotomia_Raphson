@@ -27,7 +27,7 @@ public class Dicotomia {
     
     
     
-//Construtor
+//Construtor: Aqui ocorre a entrada dos valores necessários para serem usados nos cálculos
     public Dicotomia (double x1, int interacao) {
         setX1(x1);
         setX2(0);
@@ -41,7 +41,7 @@ public class Dicotomia {
     }
     
     
- //Getters    
+//Getters: Ocorrem o retorno dos valores inseridos nos Setters   
     public static double getX1() {
         return x1;
     }
@@ -74,7 +74,7 @@ public class Dicotomia {
         return interacao;
     }
     
- //Setters
+//Setters: ocorrem a inserção dos valores, obtidos através do Construtor
     public static void setX1(double x1) {
         Dicotomia.x1 = x1;
     }

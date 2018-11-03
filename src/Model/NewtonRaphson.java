@@ -86,6 +86,7 @@ public class NewtonRaphson {
     }
     public static void passaValor(double xf) {
          //Definição do próximo valor a ser 
+         setXi(xf);
     }
     
     
