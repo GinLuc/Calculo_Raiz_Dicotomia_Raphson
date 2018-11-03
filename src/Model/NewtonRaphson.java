@@ -35,6 +35,14 @@ public class NewtonRaphson {
     }
     
     
+    public NewtonRaphson (double xf) {
+        setXi(xf);      
+        setFxi(xf);     
+        setFdxi(xf);    
+        setXf(xf, getFxi(), getFdxi());       
+        setModulo(xf, getXf());
+    }
+    
 //Getters: Ocorrem o retorno dos valores inseridos nos Setters
     public static double getXi() {
         return xi;
@@ -86,7 +94,7 @@ public class NewtonRaphson {
     }
     public static void passaValor(double xf) {
          //Definição do próximo valor a ser 
-         setXi(xf);
+         new NewtonRaphson(xf);
     }
     
     
@@ -102,7 +110,7 @@ public class NewtonRaphson {
         modelo.addColumn("|Xf - Xi|");
         
         int i=0; //Variável local com o objetivo de ser usada para percorrer a tabela
-        int prox=i++;
+        
         //Inserção dos valores adquridos com os setters, retornando-os com os getters
         while (i <= getInteracao()) {
             String vlxi = Double.toString(getXi());
