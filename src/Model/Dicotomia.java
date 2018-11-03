@@ -109,16 +109,20 @@ public class Dicotomia {
     
     
     public static void passaValor(double fx1,double fx2, double fpm, double pm) {
-        if(fpm < 0) {
+ if(fpm < 0.0) {
             if (fx1 < 0)
                 setX1(pm);
             else if (fx2 < 0)
+                setX2(pm);  
+        }
+        else {
+            if (fx1 >= 0)
+                setX1(pm);
+            else if (fx2 >= 0)
                 setX2(pm);
         }
-        else if (fx1 >= 0)
-            setX1(pm);
-        else if (fx2 >= 0)
-            setX2(pm);
+            
+       
     }
     
     
@@ -145,7 +149,7 @@ public class Dicotomia {
             String vlmodulo = Double.toString(getModulo());
 
             String[] s = {vlx1, vlfx1, vlx2, vlfx2, vlpm, vlfpm, vlmodulo};
-            modelo.addRow(s);    
+            modelo.addRow(s);  
             passaValor(getFx1(), getFx2(), getFpm(), getPm());
             i++;
         }

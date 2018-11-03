@@ -8,6 +8,7 @@ package View;
 import Model.Dicotomia;
 import Model.NewtonRaphson;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -135,6 +136,11 @@ public class TelaCalculo extends javax.swing.JFrame {
 
         btLimpar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btLimpar.setText("LIMPAR");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         btGravar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btGravar.setText("GRAVAR");
@@ -257,14 +263,32 @@ public class TelaCalculo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfVlInicialActionPerformed
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-        if (tpCalculo.getSelectedComponent() == pnDicotomia) {
-            Dicotomia dt = new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
-            montaTabelaDicotomia();
-        } else if (tpCalculo.getSelectedComponent() == pnDicotomia) {
-            NewtonRaphson nr = new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Double.parseDouble(tfPrecisao.getText()));
-            montaTabelaNewtonRaphson();
-        } 
+        try {
+            if (tpCalculo.getSelectedComponent() == pnDicotomia) {
+                tbDicotomia.setVisible(true);
+                new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
+                montaTabelaDicotomia();
+            } else if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
+                tbNewtonRaphson.setVisible(true);
+                new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
+                montaTabelaNewtonRaphson();
+            } 
+            
+        } catch(RuntimeException e) {
+                JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+            
     }//GEN-LAST:event_btGravarActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        tfVlFinal.setText("");
+        tfPrecisao.setText("");
+        tfVlInicial.setText("");
+        tfInteracoes.setText("");
+        tbDicotomia.setVisible(false);
+        pnNewtonRaphson.setVisible(false);
+        tbNewtonRaphson.setVisible(false);
+    }//GEN-LAST:event_btLimparActionPerformed
 
     /**
      * @param args the command line arguments
