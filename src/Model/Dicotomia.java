@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author GianL
+ * @author GianL and FelipeSdS
  */
 public class Dicotomia {
     private static double x1;
@@ -21,14 +21,14 @@ public class Dicotomia {
     private static double fpm;
     private static double modulo;
     private static int interacao;
-    
+    private static double precisao;
  
     
     
     
     
 //Construtor: Aqui ocorre a entrada dos valores necessários para serem usados nos cálculos
-    public Dicotomia (double x1, int interacao) {
+    public Dicotomia (double x1, int interacao, double precisao) {
         setX1(x1);
         setX2(0);
         setFx1(x1);
@@ -37,7 +37,7 @@ public class Dicotomia {
         setFpm(getPm());
         setInteracao(interacao);
         setModulo(getX1(), getX2());
-        
+        setPrecisao(precisao);
     }
     
     
@@ -84,6 +84,10 @@ public class Dicotomia {
         return interacao;
     }
     
+    public static double getPrecisao() {
+        return precisao;
+    }
+    
 //Setters: ocorrem a inserção dos valores, obtidos através do Construtor
     public static void setX1(double x1) {
         Dicotomia.x1 = x1;
@@ -117,7 +121,12 @@ public class Dicotomia {
         Dicotomia.interacao = interacao;
     }
     
+    public static void setPrecisao(double precisao) {
+        Dicotomia.precisao = precisao;
+    }
     
+ //Método para troca de Valores com Relação ao Dicotomia, aonde caso o valor retornado por Fx1 seja negativo igualmente ao
+ //Fpm, ele deve passar o Pm para o X1, enquanto o mesmo vale para Fx2 e X2.
     public static void passaValor(double x1, double x2, double fx1,double fx2, double fpm, double pm) {
         if(fpm < 0.0) {
             if (fx1 < 0)
@@ -149,7 +158,7 @@ public class Dicotomia {
         modelo.addColumn("|X1 - X2|");       
         int i=0 ;
 
-        while (i <= getInteracao()) {
+        while (i <= getInteracao() || getModulo() != getPrecisao()) {
             String vlx1 = Double.toString(getX1());
             String vlx2 = Double.toString(getX2());
             String vlfx1 = Double.toString(getFx1());

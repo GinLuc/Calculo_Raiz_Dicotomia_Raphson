@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author GianL
+ * @author GianL and FelipeSdS
  */
 
 public class NewtonRaphson {
@@ -78,7 +78,7 @@ public class NewtonRaphson {
     }
     
     public static void setFdxi(double xi) {
-        NewtonRaphson.fdxi = (sqrt(1 / xi)) / 2; // Definição da Variável Fdxi à Derivada de Raíz Quadrada de Fxi, sendo essa: 1/2 * RAIZ(1/xi)
+        NewtonRaphson.fdxi = (1 / sqrt(xi)) / 2; // Definição da Variável Fdxi à Derivada de Raíz Quadrada de Fxi, sendo essa: 1/2 * RAIZ(1/xi)
     }
     
     public static void setXf(double xi, double fxi, double fdxi) {
@@ -92,6 +92,8 @@ public class NewtonRaphson {
     public static void setInteracao(int interacao) {
         NewtonRaphson.interacao = interacao;
     }
+    
+//Método para passar o valor adquirido em Xf para novo Xi    
     public static void passaValor(double xf) {
          //Definição do próximo valor a ser 
          new NewtonRaphson(xf);
@@ -105,7 +107,7 @@ public class NewtonRaphson {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Xi");
         modelo.addColumn("f(Xi)");
-        modelo.addColumn("f'(Xi)");
+        modelo.addColumn("f '(Xi)");
         modelo.addColumn("Xi - (f(Xi)/f'(Xi))");
         modelo.addColumn("|Xf - Xi|");
         
