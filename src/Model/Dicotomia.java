@@ -14,22 +14,29 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author GianL and FelipeSdS
  */
+
+
+/**
+ * Classe usada para a aplicação do Cálculo da Dicotomia
+ */
 public class Dicotomia {
-    private static double x1;
-    private static double x2 = 0;
-    private static double fx1;
-    private static double fx2;
+    
+    private static double x1; //Variável X1, sendo esse o primeiro valor de X
+    private static double x2 = 0; //Variável X2, sendo esse o segundo valor de X(assumindo que inicialmente ele seja 0)
+    private static double fx1;  //Variável representante da Função de X1
+    private static double fx2;  //Variável representante da Função de X2
     private static double pm;      //Variável P.M., aonde este é o Ponto Médio entre os dois valores escolhidos: (x1 + x2) / 2
-    private static double fpm;
-    private static double modulo;
-    private static int interacao;
+    private static double fpm;      //Variável representante da Função do Ponto Médio
+    private static double modulo;   //Variável representante do Módulo
+    private static int interacao;   //Variável representante da Interação dos cálculos
  
     
+    //Instância do objeto VER para a Classe Verificação
     Verificacao ver = new Verificacao();
     
-    public static ArrayList<Double> val_expx1 = new ArrayList<Double>();
-    public static ArrayList<Double> val_expx2 = new ArrayList<Double>();
-    public static ArrayList<Double> val_exppm = new ArrayList<Double>();
+    public static ArrayList<Double> val_expx1 = new ArrayList<Double>(); //Criação do ArrayList VAL_EXPX1
+    public static ArrayList<Double> val_expx2 = new ArrayList<Double>(); //Criação do ArrayList VAL_EXPX2
+    public static ArrayList<Double> val_exppm = new ArrayList<Double>(); //Criação do ArrayList VAL_EXPPM
     
     
 //Construtor: Aqui ocorre a entrada dos valores necessários para serem usados nos cálculos
@@ -47,7 +54,7 @@ public class Dicotomia {
         setModulo(getX1(), getX2());
     }
     
-    
+//Construtor Dicotomia, porém para a segunda interação em diante, sendo suas entradas os valores X1 e X2    
     public Dicotomia(double x1, double x2) {
         val_expx1 = ver.VerificaNegativo(x1, 2);
         val_expx2 = ver.VerificaNegativo(x2, 2);

@@ -24,7 +24,7 @@ public class TelaCalculo extends javax.swing.JFrame {
         initComponents();
         
         
-        
+       
 
     }
 
@@ -153,6 +153,11 @@ public class TelaCalculo extends javax.swing.JFrame {
         tpCalculo.setBackground(new java.awt.Color(204, 204, 204));
         tpCalculo.setToolTipText("");
         tpCalculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tpCalculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tpCalculoMouseClicked(evt);
+            }
+        });
 
         tbDicotomia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,6 +210,8 @@ public class TelaCalculo extends javax.swing.JFrame {
         );
 
         tpCalculo.addTab("Newton-Raphson", pnNewtonRaphson);
+
+        tpCalculo.setSelectedIndex(1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,12 +272,14 @@ public class TelaCalculo extends javax.swing.JFrame {
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         try {
             if (tpCalculo.getSelectedComponent() == pnDicotomia) {
+                tfVlFinal.setEditable(false);
                 tbDicotomia.setVisible(true);
                 new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
                 montaTabelaDicotomia();
             } else if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
+                tfVlFinal.setEditable(true);
                 tbNewtonRaphson.setVisible(true);
-                new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
+                new NewtonRaphson(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()), Double.parseDouble(tfVlFinal.getText()));
                 montaTabelaNewtonRaphson();
             } 
             
@@ -289,6 +298,14 @@ public class TelaCalculo extends javax.swing.JFrame {
         pnNewtonRaphson.setVisible(false);
         tbNewtonRaphson.setVisible(false);
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void tpCalculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tpCalculoMouseClicked
+         if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
+        tfVlFinal.setEditable(true);
+        } else {
+            tfVlFinal.setEditable(false);
+        }
+    }//GEN-LAST:event_tpCalculoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -334,6 +351,8 @@ public class TelaCalculo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaCalculo().setVisible(true);
+                
+       
             }
         });
     }
