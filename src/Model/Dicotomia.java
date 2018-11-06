@@ -5,7 +5,9 @@
  */
 package Model;
 
+import Util.Verificacao;
 import static java.lang.Math.*;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,33 +23,41 @@ public class Dicotomia {
     private static double fpm;
     private static double modulo;
     private static int interacao;
-    private static double precisao;
  
     
+    Verificacao ver = new Verificacao();
     
+    public static ArrayList<Double> val_expx1 = new ArrayList<Double>();
+    public static ArrayList<Double> val_expx2 = new ArrayList<Double>();
+    public static ArrayList<Double> val_exppm = new ArrayList<Double>();
     
     
 //Construtor: Aqui ocorre a entrada dos valores necessários para serem usados nos cálculos
-    public Dicotomia (double x1, int interacao, double precisao) {
-        setX1(x1);
+    public Dicotomia (double x1, int interacao) {
+        val_expx1 = ver.VerificaNegativo(x1, 2);
+        val_expx2 = ver.VerificaNegativo(getX2(), 2);
+        val_exppm = ver.VerificaNegativo(getPm(), 2);
+        setX1(val_expx1.get(0));
         setX2(0);
-        setFx1(x1);
-        setFx2(getX2());
+        setFx1(val_expx1.get(0), val_expx1.get(1));
+        setFx2(val_expx2.get(0), val_expx2.get(1));
         setPm(getX1(), getX2());
-        setFpm(getPm());
+        setFpm(val_exppm.get(0), val_exppm.get(1));
         setInteracao(interacao);
         setModulo(getX1(), getX2());
-        setPrecisao(precisao);
     }
     
     
     public Dicotomia(double x1, double x2) {
-        setX1(x1);
-        setX2(x2);
-        setFx1(x1);
-        setFx2(getX2());
+        val_expx1 = ver.VerificaNegativo(x1, 2);
+        val_expx2 = ver.VerificaNegativo(x2, 2);
+        val_exppm = ver.VerificaNegativo(getPm(), 2);
+        setX1(val_expx1.get(0));
+        setX2(val_expx2.get(0));
+        setFx1(val_expx1.get(0), val_expx1.get(1));
+        setFx2(val_expx2.get(0), val_expx2.get(1));
         setPm(getX1(), getX2());
-        setFpm(getPm());
+        setFpm(val_exppm.get(0), val_exppm.get(1));
         setModulo(getX1(), getX2());
     }
     
@@ -84,9 +94,6 @@ public class Dicotomia {
         return interacao;
     }
     
-    public static double getPrecisao() {
-        return precisao;
-    }
     
 //Setters: ocorrem a inserção dos valores, obtidos através do Construtor
     public static void setX1(double x1) {
@@ -97,20 +104,20 @@ public class Dicotomia {
         Dicotomia.x2 = x2;
     }
     
-    public static void setFx1(double x1) {
-        Dicotomia.fx1 = sqrt(x1);
+    public static void setFx1(double x1, double exp) {
+        Dicotomia.fx1 = pow(x1, exp);
     }
     
-    public static void setFx2(double x2) {
-        Dicotomia.fx2 = sqrt(x2);
+    public static void setFx2(double x2, double exp) {
+        Dicotomia.fx2 = pow(x2,exp);
     }
     
     public static void setPm(double x1, double x2) {
         Dicotomia.pm = (x1 + x2) / 2;
     }
     
-    public static void setFpm(double pm) {
-        Dicotomia.fpm = sqrt(pm);
+    public static void setFpm(double pm, double exp) {
+        Dicotomia.fpm = pow(pm, exp);
     }
     
     public static void setModulo (double x1, double x2) {
@@ -121,9 +128,7 @@ public class Dicotomia {
         Dicotomia.interacao = interacao;
     }
     
-    public static void setPrecisao(double precisao) {
-        Dicotomia.precisao = precisao;
-    }
+
     
  //Método para troca de Valores com Relação ao Dicotomia, aonde caso o valor retornado por Fx1 seja negativo igualmente ao
  //Fpm, ele deve passar o Pm para o X1, enquanto o mesmo vale para Fx2 e X2.
@@ -158,7 +163,7 @@ public class Dicotomia {
         modelo.addColumn("|X1 - X2|");       
         int i=0 ;
 
-        while (i <= getInteracao() || getModulo() != getPrecisao()) {
+        for (i=0;i <= getInteracao();i++) {
             String vlx1 = Double.toString(getX1());
             String vlx2 = Double.toString(getX2());
             String vlfx1 = Double.toString(getFx1());
@@ -170,7 +175,6 @@ public class Dicotomia {
             String[] s = {vlx1, vlfx1, vlx2, vlfx2, vlpm, vlfpm, vlmodulo};
             modelo.addRow(s);  
             passaValor(getX1(), getX2(), getFx1(), getFx2(), getFpm(), getPm());
-            i++;
         }
 
         return modelo;

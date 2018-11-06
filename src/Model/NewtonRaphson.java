@@ -5,8 +5,10 @@
  */
 package Model;
 
+import Util.*;
 import static java.lang.Math.abs;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,13 +24,18 @@ public class NewtonRaphson {
     private static double modulo;   //Variável que representa o Módulo(|Xf - Xi|)
     private static int interacao;   //Varável que representa o número de interações, descartando a interação com o valor de entrada
 
+    Verificacao ver = new Verificacao();
+    
+    public static ArrayList<Double> val_exp = new ArrayList<Double>();
+    
     
     
 //Construtor: Aqui ocorre a entrada dos valores necessários para serem usados nos cálculos
     public NewtonRaphson (double xi, int interacao) {
-        setXi(xi);      //permite a entrada do valor Xi
-        setFxi(xi);     //Permite a entrada do valor Xi para ser usado no Fxi
-        setFdxi(xi);    //Permite a entrada do valor Xi para ser usado no Fdxi(ou Função Derivada de Fxi)
+        val_exp = ver.VerificaNegativo(xi, 2);
+        setXi(val_exp.get(0));      //permite a entrada do valor Xi
+        setFxi(val_exp.get(0), val_exp.get(1));     //Permite a entrada do valor Xi para ser usado no Fxi
+        setFdxi(val_exp.get(0), val_exp.get(1));    //Permite a entrada do valor Xi para ser usado no Fdxi(ou Função Derivada de Fxi)
         setXf(xi, getFxi(), getFdxi()); //Permite a entrada de Xi, Fxi e Fdxi para serem usados no cálculo do próximo valor de Xi
         setInteracao(interacao);        //Permite a entrada do valor Interacao
         setModulo(xi, getXf());     // Permite a entrada do valor Xi e Xf(próximo valor assumido por Xi) para serem usados no Modulo 
@@ -36,9 +43,10 @@ public class NewtonRaphson {
     
     
     public NewtonRaphson (double xf) {
-        setXi(xf);      
-        setFxi(xf);     
-        setFdxi(xf);    
+        val_exp = ver.VerificaNegativo(xf, 2);
+        setXi(val_exp.get(0));      
+        setFxi(val_exp.get(0), val_exp.get(1));     
+        setFdxi(val_exp.get(0), val_exp.get(1));   
         setXf(xf, getFxi(), getFdxi());       
         setModulo(xf, getXf());
     }
@@ -73,12 +81,12 @@ public class NewtonRaphson {
         NewtonRaphson.xi = xi;
     }
     
-    public static void setFxi(double xi) {
-        NewtonRaphson.fxi = sqrt(xi); //Definição da Variável Fxi à raíz quadrada da Variável Xi
+    public static void setFxi(double xi, double exp) {
+        NewtonRaphson.fxi = pow(xi, exp); //Definição da Variável Fxi à raíz quadrada da Variável Xi
     }
     
-    public static void setFdxi(double xi) {
-        NewtonRaphson.fdxi = (1 / sqrt(xi)) / 2; // Definição da Variável Fdxi à Derivada de Raíz Quadrada de Fxi, sendo essa: 1/2 * RAIZ(1/xi)
+    public static void setFdxi(double xi, double exp) {
+        NewtonRaphson.fdxi = (1 / pow(xi, exp)) / 2; // Definição da Variável Fdxi à Derivada de Raíz Quadrada de Fxi, sendo essa: 1/2 * RAIZ(1/xi)
     }
     
     public static void setXf(double xi, double fxi, double fdxi) {
@@ -115,11 +123,11 @@ public class NewtonRaphson {
         
         //Inserção dos valores adquridos com os setters, retornando-os com os getters
         while (i <= getInteracao()) {
-            String vlxi = Double.toString(getXi());
-            String vlfxi = Double.toString(getFxi());
-            String vlfdxi = Double.toString(getFdxi());
-            String vlxf = Double.toString(getXf());
-            String vlmodulo = Double.toString(getModulo());
+            String vlxi = Formatacao.ArredondaValor(getXi());
+            String vlfxi = Formatacao.ArredondaValor(getFxi());
+            String vlfdxi = Formatacao.ArredondaValor(getFdxi());
+            String vlxf = Double.toString(Math.round(getXf()));
+            String vlmodulo = Formatacao.ArredondaValor(getModulo());
 
             String[] s = {vlxi, vlfxi, vlfdxi, vlxf, vlmodulo};
             modelo.addRow(s);  

@@ -266,7 +266,7 @@ public class TelaCalculo extends javax.swing.JFrame {
         try {
             if (tpCalculo.getSelectedComponent() == pnDicotomia) {
                 tbDicotomia.setVisible(true);
-                new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()), Double.parseDouble(tfPrecisao.getText()));
+                new Dicotomia(Double.parseDouble(tfVlInicial.getText()), Integer.parseInt(tfInteracoes.getText()));
                 montaTabelaDicotomia();
             } else if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
                 tbNewtonRaphson.setVisible(true);
