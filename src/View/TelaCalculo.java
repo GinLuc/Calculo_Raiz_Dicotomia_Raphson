@@ -22,7 +22,7 @@ public class TelaCalculo extends javax.swing.JFrame {
      */
     public TelaCalculo() {
         initComponents();
-        
+        tfVlFinal.setEditable(false);
         
        
 
@@ -46,8 +46,6 @@ public class TelaCalculo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         tfInteracoes = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        tfPrecisao = new javax.swing.JTextField();
         btLimpar = new javax.swing.JButton();
         btGravar = new javax.swing.JButton();
         tpCalculo = new javax.swing.JTabbedPane();
@@ -104,34 +102,25 @@ public class TelaCalculo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Interações:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Precisão:");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(64, 64, 64)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfInteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPrecisao, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tfInteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPrecisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(tfInteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         btLimpar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -211,8 +200,6 @@ public class TelaCalculo extends javax.swing.JFrame {
 
         tpCalculo.addTab("Newton-Raphson", pnNewtonRaphson);
 
-        tpCalculo.setSelectedIndex(1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,36 +214,41 @@ public class TelaCalculo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tfVlFinal)
                     .addComponent(tfVlInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(tpCalculo, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfVlInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                            .addGap(35, 35, 35)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfVlFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfVlInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfVlFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(tpCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -291,7 +283,6 @@ public class TelaCalculo extends javax.swing.JFrame {
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         tfVlFinal.setText("");
-        tfPrecisao.setText("");
         tfVlInicial.setText("");
         tfInteracoes.setText("");
         tbDicotomia.setVisible(false);
@@ -300,8 +291,10 @@ public class TelaCalculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void tpCalculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tpCalculoMouseClicked
-         if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
-        tfVlFinal.setEditable(true);
+        //Caso o panel do Newton-Raphson seja clicado, a caixa de texto do Valor Resultante será disponibilizada para alterar seu conteúdo.
+        //Porém, caso seja clicado o painel da Dicotomia, esse campo será desativado, até que seja clicado novamente o panel do Newton-Raphson
+        if (tpCalculo.getSelectedComponent() == pnNewtonRaphson) {
+            tfVlFinal.setEditable(true);
         } else {
             tfVlFinal.setEditable(false);
         }
@@ -311,14 +304,31 @@ public class TelaCalculo extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    
+    //Método para montar a tabela dos cálculos implementados na classe Dicotomia
     private void montaTabelaDicotomia() {
-       tbDicotomia.setModel(Dicotomia.getTableModel());
+        
+       // Caso o valor inicial inserido pelo usuário, ele fará os cálculos normalmente, inserido os valores íntegros na tabela Dicotomia.
+       // Porém, caso o mesmo seja negativo, ele inserirá os valores ao quadrado, sendo inclusive mostrados na tabela de Dicotomia.
+       if (Double.parseDouble(tfVlInicial.getText()) > 0) {
+           tbDicotomia.setModel(Dicotomia.getTableModelPositivo());
+       } else {
+           tbDicotomia.setModel(Dicotomia.getTableModelNegativo());
+       }
+        
        tbDicotomia.enable(true);
     } 
     
+    //Método para montar a tabela dos cálculos implementados na classe Newton-Raphson
     private void montaTabelaNewtonRaphson() {
-       tbNewtonRaphson.setModel(NewtonRaphson.getTableModel());
+        
+       // Caso o valor inicial inserido pelo usuário, ele fará os cálculos normalmente, inserido os valores íntegros na tabela Newton-Raphson.
+       // Porém, caso o mesmo seja negativo, ele inserirá os valores ao quadrado, sendo inclusive mostrados na tabela de Newton-Raphson. 
+       if (Double.parseDouble(tfVlInicial.getText()) > 0) {
+           tbNewtonRaphson.setModel(NewtonRaphson.getTableModelPositivo());
+       } else {
+           tbNewtonRaphson.setModel(NewtonRaphson.getTableModelPositivo());
+       }
+       
        tbNewtonRaphson.enable(true);
     } 
     
@@ -364,7 +374,6 @@ public class TelaCalculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -374,7 +383,6 @@ public class TelaCalculo extends javax.swing.JFrame {
     private javax.swing.JTable tbDicotomia;
     private javax.swing.JTable tbNewtonRaphson;
     private javax.swing.JTextField tfInteracoes;
-    private javax.swing.JTextField tfPrecisao;
     private javax.swing.JTextField tfVlFinal;
     private javax.swing.JTextField tfVlInicial;
     private javax.swing.JTabbedPane tpCalculo;

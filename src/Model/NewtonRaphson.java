@@ -18,16 +18,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class NewtonRaphson {
     private static double xi;       //Variável do Valor Inicial, ou Xi
-    private static double fxi;     //Cariável da Função de Xi 
+    private static double fxi;     //Variável da Função de Xi 
     private static double fdxi;    //Variável da Derivada de Xi
     private static double xf;      //Variável que representa o X a ser substituído no Xi na próxima interação
     private static double modulo;   //Variável que representa o Módulo(|Xf - Xi|)
     private static int interacao;   //Varável que representa o número de interações, descartando a interação com o valor de entrada
     private static double resultante; //Variável que representa o valor que X deve assumir
     
+    //Instância do objeto VER para a Classe Verificação
     Verificacao ver = new Verificacao();
     
-    public static ArrayList<Double> val_exp = new ArrayList<Double>();
+    public static ArrayList<Double> val_exp = new ArrayList<Double>(); //Criação do ArrayList VAL_EXPX1
     
     
     
@@ -43,7 +44,8 @@ public class NewtonRaphson {
         setResultante(resultante);  //Permite a entrada do valor X
     }
     
-    
+ 
+//Construtor usado para segunda Interação em diante, com o parâmetro de entrada o valor de Xf
     public NewtonRaphson (double xf) {
         val_exp = ver.VerificaNegativo(xf, 2);
         setXi(val_exp.get(0));      
@@ -54,35 +56,45 @@ public class NewtonRaphson {
     }
     
 //Getters: Ocorrem o retorno dos valores inseridos nos Setters
+    
+    //Getter da Variável de Xi
     public static double getXi() {
         return xi;
     }
     
+    //Getter da Variável da Função de Xi(Fxi)
     public static double getFxi() {
         return fxi;
     }
     
+    //Getter da Variável da Derivada da Função de Xi(Fdxi)
     public static double getFdxi() {
         return fdxi;
     }
     
+    //Getter da Variável do próximo valor de Xi(Xf)
     public static double getXf() {
         return xf;
     }
     
+    //Getter da Variável Módulo
     public static double getModulo() {
         return modulo;
     }
     
+    //Getter da Variável da Interação entre os Cálculos
     public static double getInteracao() {
         return interacao;
     }
     
+    //Getter da Variável do Valor Resultante que o Usuário deseja
     public static double getResultante() {
         return resultante;
     }
     
 //Setters: ocorrem a inserção dos valores, obtidos através do Construtor
+    
+    //Setter da 
     public static void setXi(double xi) {
         NewtonRaphson.xi = xi;
     }
@@ -119,13 +131,43 @@ public class NewtonRaphson {
     
     
 //Método para definição da Tabela a ser mostrada na View com TabbedPane
-    public static DefaultTableModel getTableModel() {
+    public static DefaultTableModel getTableModelPositivo() {
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Xi");
         modelo.addColumn("f(Xi)");
         modelo.addColumn("f '(Xi)");
         modelo.addColumn("Xi - (f(Xi)/f '(Xi))");
+        modelo.addColumn("|Xf - Xi|");
+        
+        int i=0; //Variável local com o objetivo de ser usada para percorrer a tabela
+        
+        //Inserção dos valores adquridos com os setters, retornando-os com os getters
+        while (i <= getInteracao()) {
+            String vlxi = Double.toString(Math.round(getXi()));
+            String vlfxi = Double.toString(Math.round(getFxi()));
+            String vlfdxi = Double.toString(Math.round(getFdxi()));
+            String vlxf = Double.toString(Math.round(getXf()));
+            String vlmodulo = Double.toString(Math.round(getModulo()));
+
+            String[] s = {vlxi, vlfxi, vlfdxi, vlxf, vlmodulo};
+            modelo.addRow(s);  
+            passaValor(getXf());
+            i++;
+            if(getXi() == getResultante()) {
+                break;
+            }
+            
+        }
+        return modelo;
+    }
+    public static DefaultTableModel getTableModelNegativo() {
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Xi²");
+        modelo.addColumn("f(Xi²)");
+        modelo.addColumn("f '(Xi²)");
+        modelo.addColumn("Xi - (f(Xi²)/f '(Xi²))");
         modelo.addColumn("|Xf - Xi|");
         
         int i=0; //Variável local com o objetivo de ser usada para percorrer a tabela

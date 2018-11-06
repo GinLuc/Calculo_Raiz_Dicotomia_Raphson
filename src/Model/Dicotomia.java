@@ -158,13 +158,42 @@ public class Dicotomia {
     
     
     
-    public static DefaultTableModel getTableModel() {
+    public static DefaultTableModel getTableModelPositivo() {
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("X1");
         modelo.addColumn("f(X1)");
         modelo.addColumn("X2");
         modelo.addColumn("f(X2)");
+        modelo.addColumn("P.M.");       
+        modelo.addColumn("f(P.M.)");       
+        modelo.addColumn("|X1 - X2|");       
+        int i=0 ;
+
+        for (i=0;i <= getInteracao();i++) {
+            String vlx1 = Double.toString(getX1());
+            String vlx2 = Double.toString(getX2());
+            String vlfx1 = Double.toString(getFx1());
+            String vlfx2 = Double.toString(getFx2());
+            String vlpm = Double.toString(getPm());
+            String vlfpm = Double.toString(getFpm());
+            String vlmodulo = Double.toString(getModulo());
+
+            String[] s = {vlx1, vlfx1, vlx2, vlfx2, vlpm, vlfpm, vlmodulo};
+            modelo.addRow(s);  
+            passaValor(getX1(), getX2(), getFx1(), getFx2(), getFpm(), getPm());
+        }
+
+        return modelo;
+    }
+    
+    public static DefaultTableModel getTableModelNegativo() {
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("X1²");
+        modelo.addColumn("f(X1²)");
+        modelo.addColumn("X2²");
+        modelo.addColumn("f(X2²)");
         modelo.addColumn("P.M.");       
         modelo.addColumn("f(P.M.)");       
         modelo.addColumn("|X1 - X2|");       
